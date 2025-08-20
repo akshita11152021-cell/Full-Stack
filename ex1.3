@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card-bg: #fff;
+      --text: #111827;
+      --accent: #2563eb;
+    }
+    [data-theme="dark"] {
+      --bg: #111827;
+      --card-bg: #1f2937;
+      --text: #f9fafb;
+      --accent: #3b82f6;
+    }
+    body {
+      margin: 0; font-family: system-ui, sans-serif;
+      background: var(--bg); color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      display: grid; grid-template-rows: 60px 1fr;
+      height: 100vh;
+    }
+    header {
+      background: var(--card-bg); display: flex;
+      align-items: center; justify-content: space-between;
+      padding: 0 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      padding: 16px;
+      height: calc(100vh - 60px);
+    }
+    nav {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    nav a {
+      text-decoration: none; color: var(--text);
+      padding: 8px 12px; border-radius: 8px;
+    }
+    nav a:hover { background: var(--accent); color: #fff; }
+    main {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px; padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    button.theme-toggle {
+      background: var(--accent); color: #fff;
+      border: none; padding: 8px 14px;
+      border-radius: 8px; font-weight: 600;
+      cursor: pointer; transition: 0.2s;
+    }
+    button.theme-toggle:hover { filter: brightness(1.1); }
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      nav { flex-direction: row; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <h1>Admin Dashboard</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+  </header>
+
+  <div class="container">
+    <nav>
+      <a href="#">🏠 Home</a>
+      <a href="#">📊 Analytics</a>
+      <a href="#">👥 Users</a>
+      <a href="#">⚙️ Settings</a>
+    </nav>
+
+    <main>
+      <div class="card">
+        <h2>Total Users</h2>
+        <p>1,240</p>
+      </div>
+      <div class="card">
+        <h2>Active Sessions</h2>
+        <p>342</p>
+      </div>
+      <div class="card">
+        <h2>Revenue</h2>
+        <p>$12,430</p>
+      </div>
+      <div class="card">
+        <h2>System Health</h2>
+        <p>✅ Operational</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      body.dataset.theme = body.dataset.theme === "light" ? "dark" : "light";
+    }
+  </script>
+</body>
+</html>
