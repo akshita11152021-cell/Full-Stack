@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Registration</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; padding: 24px; background:#f7f7f9; }
+    form { max-width: 480px; margin: auto; background:#fff; padding: 20px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+    fieldset { border: 0; padding: 0; }
+    legend { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+    label { display: block; margin: 14px 0 6px; font-weight: 600; }
+    input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d7; border-radius: 8px; font-size: 1rem; }
+    input:invalid:focus { outline: 2px solid #e53e3e; }
+    small { color: #6b7280; }
+    button { margin-top: 16px; padding: 10px 14px; border: 0; background:#4f46e5; color:#fff; border-radius: 10px; font-weight: 700; cursor: pointer; }
+    button:hover { filter: brightness(1.05); }
+  </style>
+</head>
+<body>
+  <form id="studentForm" action="#" method="post">
+    <fieldset>
+      <legend>Student Registration</legend>
+
+      <label for="name">Full Name</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        minlength="2"
+        maxlength="50"
+        autocomplete="name"
+        pattern="^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,50}$"
+        title="Use 2–50 characters: letters, spaces, hyphens, or apostrophes only."
+        placeholder="e.g., Asha Kumar" />
+      <small>Letters, spaces, hyphens, or apostrophes; 2–50 chars.</small>
+
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="e.g., asha@example.com" />
+      <small>Must be a valid email address.</small>
+
+      <label for="age">Age</label>
+      <input
+        id="age"
+        name="age"
+        type="number"
+        required
+        min="16"
+        max="120"
+        step="1"
+        inputmode="numeric"
+        placeholder="e.g., 19" />
+      <small>Enter an integer between 16 and 120.</small>
+
+      <button type="submit">Register</button>
+    </fieldset>
+  </form>
+
+  <!-- Optional: friendlier messages while keeping native HTML5 validation -->
+  <script>
+    const form = document.getElementById('studentForm');
+    form.addEventListener('submit', (e) => {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        form.reportValidity(); // triggers the browser’s native messages
+      }
+    });
+  </script>
+</body>
+</html>
